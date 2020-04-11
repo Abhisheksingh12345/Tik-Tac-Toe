@@ -7,17 +7,19 @@ public class TikTocToe {
             {' ', ' ', ' '}};
     private static boolean comeOut = false;
 
+    private static char oldChance = 'O';
+
     public static void main(String[] args) {
         int threeComplete = 0;
         showTicTocToeTake();
         while (!comeOut) {
             userInput();
+            showTicTocToeTake();
             if (threeComplete >= ticTocToe.length) {
                 checkResult();
             }
-
+            threeComplete++;
         }
-
     }
 
     private static void checkResult() {
@@ -30,10 +32,15 @@ public class TikTocToe {
         } else if (ticTocToe[0][1] != ' ' && ticTocToe[0][1] == ticTocToe[1][1] && ticTocToe[1][1] == ticTocToe[2][0]) {
             System.out.println(ticTocToe[1][1] + " wins");
             comeOut = true;
-        } else if (ticTocToe[0][0] == ' ' || ticTocToe[0][1] == ' ' && ticTocToe[0][0] == ticTocToe[1][1]
-                && ticTocToe[2][2] == ticTocToe[1][1] || ticTocToe[0][1] == ticTocToe[1][1] && ticTocToe[1][1] == ticTocToe[2][0]) {
-            System.out.println("Impossible");
-            comeOut = true;
+        } else if (ticTocToe[0][0] == ' ' || ticTocToe[0][2] == ' ') {
+            if (ticTocToe[0][0] == ticTocToe[1][1] && ticTocToe[2][2] == ticTocToe[1][1]) {
+                System.out.println("Impossible");
+                comeOut = true;
+            }
+            if (ticTocToe[0][1] == ticTocToe[1][1] && ticTocToe[1][1] == ticTocToe[2][0]) {
+                System.out.println("Impossible");
+                comeOut = true;
+            }
         }
         for (int i = 0; i < ticTocToe.length; i++) {
             if (ticTocToe[i][0] != ' ' && ticTocToe[i][0] == ticTocToe[i][1] && ticTocToe[i][1] == ticTocToe[i][2]) {
@@ -52,10 +59,19 @@ public class TikTocToe {
         if (count1 > 0 || count2 > 0) {
             System.out.println(index + " wins");
             comeOut = true;
-
-
         }
-
+        int count4 = 0;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (ticTocToe[i][j] != ' ') {
+                    count4 += 1;
+                }
+            }
+        }
+        if (count4 == 9) {
+            System.out.println("Draw");
+            comeOut = true;
+        }
     }
 
     private static void userInput() {
@@ -113,32 +129,25 @@ public class TikTocToe {
             // indexRow = 0;
             indexColumn = 2;
             inTicTokToe(indexRow, indexColumn);
-        }
-
-
-    }
-
-    private static char oldChance = 'O';
-
-    private static void inTicTokToe(int row, int column) {
-        if (row > 3 || column > 3) {
+        } else {
             System.out.println("Coordinates should be from 1 to 3!");
             userInput();
-        } else {
-            for (char[] rowwise : ticTocToe) {
-                for (char h : rowwise) {
-                    if (ticTocToe[row][column] == ' ') {
-                        ticTocToe[row][column] = (oldChance == 'O') ? 'X' : 'O';
-                        oldChance = ticTocToe[row][column];
-                    } else {
-                        System.out.println("This cell is occupied! Choose another one!");
-                        userInput();
-                    }
-                }
-            }
         }
 
+
     }
+
+    private static void inTicTokToe(int row, int column) {
+
+        if (ticTocToe[row][column] == ' ') {
+            ticTocToe[row][column] = (oldChance == 'O') ? 'X' : 'O';
+            oldChance = ticTocToe[row][column];
+        } else {
+            System.out.println("This cell is occupied! Choose another one!");
+            userInput();
+        }
+    }
+
 
     private static void showTicTocToeTake() {
         System.out.println("----------");
