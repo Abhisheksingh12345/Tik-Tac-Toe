@@ -13,8 +13,46 @@ public class TikTocToe {
         while (!comeOut) {
             userInput();
             if (threeComplete >= ticTocToe.length) {
-                //      checkResult();
+                checkResult();
             }
+
+        }
+
+    }
+
+    private static void checkResult() {
+        int count1 = 0;
+        int count2 = 0;
+        char index = 'X';
+        if (ticTocToe[0][0] != ' ' && ticTocToe[0][0] == ticTocToe[1][1] && ticTocToe[2][2] == ticTocToe[1][1]) {
+            System.out.println(ticTocToe[1][1] + " wins");
+            comeOut = true;
+        } else if (ticTocToe[0][1] != ' ' && ticTocToe[0][1] == ticTocToe[1][1] && ticTocToe[1][1] == ticTocToe[2][0]) {
+            System.out.println(ticTocToe[1][1] + " wins");
+            comeOut = true;
+        } else if (ticTocToe[0][0] == ' ' || ticTocToe[0][1] == ' ' && ticTocToe[0][0] == ticTocToe[1][1]
+                && ticTocToe[2][2] == ticTocToe[1][1] || ticTocToe[0][1] == ticTocToe[1][1] && ticTocToe[1][1] == ticTocToe[2][0]) {
+            System.out.println("Impossible");
+            comeOut = true;
+        }
+        for (int i = 0; i < ticTocToe.length; i++) {
+            if (ticTocToe[i][0] != ' ' && ticTocToe[i][0] == ticTocToe[i][1] && ticTocToe[i][1] == ticTocToe[i][2]) {
+                count1 += 1;
+                if (count1 == 1) {
+                    index = ticTocToe[i][0];
+                }
+            }
+            if (ticTocToe[0][i] != ' ' && ticTocToe[0][i] == ticTocToe[1][i] && ticTocToe[1][i] == ticTocToe[2][i]) {
+                count2 += 1;
+                if (count2 == 1) {
+                    index = ticTocToe[0][i];
+                }
+            }
+        }
+        if (count1 > 0 || count2 > 0) {
+            System.out.println(index + " wins");
+            comeOut = true;
+
 
         }
 
@@ -92,7 +130,6 @@ public class TikTocToe {
                     if (ticTocToe[row][column] == ' ') {
                         ticTocToe[row][column] = (oldChance == 'O') ? 'X' : 'O';
                         oldChance = ticTocToe[row][column];
-                        showTicTocToeTake();
                     } else {
                         System.out.println("This cell is occupied! Choose another one!");
                         userInput();
