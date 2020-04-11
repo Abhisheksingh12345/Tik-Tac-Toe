@@ -41,15 +41,15 @@ public class TikTocToe {
         }
         if (row == 1 && column == 1) {
             indexRow = 2;
-            indexColumn = 0;
+            //  indexColumn = 0;
             inTicTokToe(indexRow, indexColumn);
         } else if (row == 1 && column == 2) {
             indexRow = 1;
-            indexColumn = 0;
+            // indexColumn = 0;
             inTicTokToe(indexRow, indexColumn);
         } else if (row == 1 && column == 3) {
-            indexRow = 0;
-            indexColumn = 0;
+            // indexRow = 0;
+            // indexColumn = 0;
             inTicTokToe(indexRow, indexColumn);
         } else if (row == 2 && column == 1) {
             indexRow = 2;
@@ -60,7 +60,7 @@ public class TikTocToe {
             indexColumn = 1;
             inTicTokToe(indexRow, indexColumn);
         } else if (row == 2 && column == 3) {
-            indexRow = 0;
+            // indexRow = 0;
             indexColumn = 1;
             inTicTokToe(indexRow, indexColumn);
         } else if (row == 3 && column == 1) {
@@ -72,7 +72,7 @@ public class TikTocToe {
             indexColumn = 2;
             inTicTokToe(indexRow, indexColumn);
         } else if (row == 3 && column == 3) {
-            indexRow = 0;
+            // indexRow = 0;
             indexColumn = 2;
             inTicTokToe(indexRow, indexColumn);
         }
@@ -104,6 +104,7 @@ public class TikTocToe {
     }
 
     private static void showTicTocToeTake() {
+        System.out.println("----------");
         for (char[] row : ticTocToe) {
             System.out.print("|" + " ");
             for (char ch : row) {
@@ -111,5 +112,6 @@ public class TikTocToe {
             }
             System.out.println(" |");
         }
+        System.out.println("----------");
     }
 }
