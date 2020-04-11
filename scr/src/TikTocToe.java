@@ -1,14 +1,21 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * this class will perform all the operation in tic-toc-toe table.
+ */
 public class TikTocToe {
+    //this will be the static character type array as it store only X,O value in it and this is static as it can easly change in hole program.
     private static char[][] ticTocToe = {{' ', ' ', ' '},
             {' ', ' ', ' '},
             {' ', ' ', ' '}};
+    //comeOut is the globle variable as the condition get check that how wins the game again -again then if any of the condition get satisfied then the program will ent at tha time.
     private static boolean comeOut = false;
-
+    // oldChance is the global character variable which store previous insert value
+    // by default it on O as the game start with X in this program.
     private static char oldChance = 'O';
 
+    // main function will maintaine the hole flow of the program.
     public static void main(String[] args) {
         int threeComplete = 0;
         showTicTocToeTake();
