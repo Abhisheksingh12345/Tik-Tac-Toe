@@ -78,6 +78,26 @@ public class TikTocToe {
 
 
     }
-}
 
+    private static char oldChance = 'O';
+
+    private static void inTicTokToe(int row, int column) {
+        if (row > 3 || column > 3) {
+            System.out.println("Coordinates should be from 1 to 3!");
+            userInput();
+        } else {
+            for (char[] rowwise : ticTocToe) {
+                for (char h : rowwise) {
+                    if (ticTocToe[row][column] == ' ') {
+                        ticTocToe[row][column] = (oldChance == 'O') ? 'X' : 'O';
+                        oldChance = ticTocToe[row][column];
+                    } else {
+                        System.out.println("This cell is occupied! Choose another one!");
+                        userInput();
+                    }
+                }
+            }
+        }
+
+    }
 }
