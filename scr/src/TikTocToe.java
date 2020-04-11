@@ -9,10 +9,11 @@ public class TikTocToe {
 
     public static void main(String[] args) {
         int threeComplete = 0;
+        showTicTocToeTake();
         while (!comeOut) {
             userInput();
             if (threeComplete >= ticTocToe.length) {
-                checkResult();
+                //      checkResult();
             }
 
         }
@@ -27,7 +28,7 @@ public class TikTocToe {
         Scanner tell = new Scanner(System.in);
         boolean comeOut = false;
         while (!comeOut) {
-            System.out.println("Enter the coordinates: ");
+            System.out.print("Enter the coordinates: ");
             try {
                 row = tell.nextInt();
                 column = tell.nextInt();
@@ -91,6 +92,7 @@ public class TikTocToe {
                     if (ticTocToe[row][column] == ' ') {
                         ticTocToe[row][column] = (oldChance == 'O') ? 'X' : 'O';
                         oldChance = ticTocToe[row][column];
+                        showTicTocToeTake();
                     } else {
                         System.out.println("This cell is occupied! Choose another one!");
                         userInput();
@@ -99,5 +101,15 @@ public class TikTocToe {
             }
         }
 
+    }
+
+    private static void showTicTocToeTake() {
+        for (char[] row : ticTocToe) {
+            System.out.print("|" + " ");
+            for (char ch : row) {
+                System.out.print(ch + " ");
+            }
+            System.out.println(" |");
+        }
     }
 }
